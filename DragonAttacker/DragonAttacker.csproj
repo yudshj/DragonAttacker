@@ -2,18 +2,23 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net7.0-windows</TargetFramework>
+        <TargetFramework>net8.0-windows7.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <UseWPF>true</UseWPF>
+        <UseWPF>True</UseWPF>
         <ApplicationManifest>app.manifest</ApplicationManifest>
+        <ApplicationIcon>lswh.ico</ApplicationIcon>
+        <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+        <ErrorReport>none</ErrorReport>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+      <DebugType>none</DebugType>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
       <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
+      <DebugType>none</DebugType>
     </PropertyGroup>
     
     <ItemGroup>
@@ -22,6 +27,10 @@
             <XamlRuntime>Wpf</XamlRuntime>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Content Include="lswh.ico" />
     </ItemGroup>
 
     <ItemGroup>
