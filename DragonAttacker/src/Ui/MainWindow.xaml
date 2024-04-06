@@ -24,7 +24,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="30,65,0,0" TextWrapping="Wrap" Text="转圈速度"
                        VerticalAlignment="Top" />
             <Slider x:Name="RotationSpeedSlider" HorizontalAlignment="Left" Margin="110,65,0,0" VerticalAlignment="Top"
-                    Width="80" Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+                    Width="80" Minimum="1" Maximum="20" TickFrequency="1" IsSnapToTickEnabled="True"
                     ValueChanged="RotationSpeedSlider_OnValueChanged" />
             <!-- <TextBox x:Name="RotationSpeedText" HorizontalAlignment="Left" Margin="110,75,0,0" VerticalAlignment="Top" Width="40" Text="0.4" TextAlignment="Center"  PreviewTextInput="RotationSpeedText_PreviewTextInput" /> -->
             <TextBlock x:Name="RotationSpeedText" HorizontalAlignment="Left" Margin="200,66,0,0" TextWrapping="Wrap"

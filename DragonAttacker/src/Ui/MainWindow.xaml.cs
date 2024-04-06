@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using DragonAttacker.Structures;
@@ -13,6 +15,31 @@ namespace DragonAttacker.Ui;
 /// </summary>
 public partial class MainWindow
 {
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll", SetLastError = true)]
+    private static extern int GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
+
+    static bool IsGenshin()
+    {
+        IntPtr foregroundWindow = GetForegroundWindow();
+        GetWindowThreadProcessId(foregroundWindow, out int processId);
+
+        Process process = Process.GetProcessById(processId);
+        if (process.ProcessName == "YuanShen")
+        {
+            Console.WriteLine("当前活跃的前台窗口为 YuanShen.exe");
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("当前活跃的前台窗口不是 YuanShen.exe");
+            return false;
+        }
+    }
+
     public MainWindow()
     {
         InitializeComponent();
@@ -38,6 +65,11 @@ public partial class MainWindow
         _rapidFHotkey.OnKeyDown += _ => { RapidFKeyController.BlockingQueue.Add(1); };
         _dragonHotkey.OnKeyDown += _ =>
         {
+            if (!IsGenshin())
+            {
+                MessageBox.Show("请确保当前活跃的前台窗口为原神", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             var left = RotationDirectionCombo.SelectedIndex == 1;
             Console.WriteLine($"Left:{left}");
             var infinity = Math.Abs(RotationTimeSlider.Value - RotationTimeSlider.Minimum) < 0.001;
